@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ayanda Infant School — Portal</title>
+
+  <!-- A staff portal holding pupil records: keep it out of search results.
+       Delete this line if the school wants the site indexed. -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <meta name="description" content="Staff portal for Ayanda Infant School, Bulawayo: admissions, attendance, assessment, fees, guardian communication and governance in one pupil record.">
+  <meta name="theme-color" content="#16304f">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-180.png">
+
+  <!-- Installable on a phone: added to the home screen it opens without browser
+       chrome, keeps working with no signal, and starts on the staff page. -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Ayanda">
+  <meta name="format-detection" content="telephone=no">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ayanda Infant School — Staff Portal">
+  <meta property="og:description" content="One pupil record from first enquiry to alumni: admissions, attendance, assessment, fees, communication and governance.">
+  <meta property="og:image" content="assets/logo.png">
+
+  <link rel="stylesheet" href="css/styles.css?v=98">
+</head>
+<body>
+  <div id="app"></div>
+  <div id="modal-root"></div>
+  <div class="toast-wrap" id="toasts"></div>
+
+  <noscript>
+    <div style="max-width:640px;margin:80px auto;padding:24px;font:16px/1.6 Calibri,Candara,Segoe,sans-serif;color:#1f2937;border:1px solid #e5e7eb;border-radius:10px">
+      <h1 style="font:700 22px Georgia,serif;color:#16304f;margin:0 0 12px">Ayanda Infant School — Staff Portal</h1>
+      <p>This portal needs JavaScript. Please enable it, or open the site in a current browser.</p>
+    </div>
+  </noscript>
+
+  <!-- One pupil record from first enquiry to alumni: admissions, attendance,
+       timetable, gradebook, fees, guardian communication, welfare, documents,
+       recruitment, governance, configuration, integrations and the audit log.
+       No build step — the scripts below are the whole application. -->
+  <script src="js/config.js?v=98"></script>
+  <script src="js/api.js?v=98"></script>
+  <script src="js/permissions.js?v=98"></script>
+  <script src="js/credentials.js?v=98"></script>
+  <script src="js/data.js?v=98"></script>
+  <script src="js/family.js?v=98"></script>
+  <script src="js/store.js?v=98"></script>
+  <script src="js/drive.js?v=98"></script>
+  <script src="js/app.js?v=98"></script>
+  <script src="js/sis.js?v=98"></script>
+  <script src="js/governance.js?v=98"></script>
+  <script src="js/portal.js?v=98"></script>
+  <script src="js/landing.js?v=98"></script>
+  <script src="js/site.js?v=98"></script>
+
+  <script>
+    /* Registered only over https or on localhost, which is everywhere it would
+       work anyway. Failure is not worth reporting: the site runs perfectly well
+       without it, just not offline. */
+    if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+      addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+
+      /* A new worker takes over the moment it installs, which would otherwise
+         leave this page running the old scripts against the new shell. Reload
+         once — but only on an update, never on the first install, and never
+         twice, or a worker that keeps changing would trap the page in a loop. */
+      let reloading = false;
+      const hadWorker = !!navigator.serviceWorker.controller;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (!hadWorker || reloading) return;
+        reloading = true;
+        location.reload();
+      });
+    }
+  </script>
+</body>
+</html>
