@@ -1,0 +1,28 @@
+{
+  "name": "Ayanda Infant School — Portal",
+  "short_name": "Ayanda",
+  "description": "The school's own record system: registers, marks, fees and messages, for staff and for families.",
+  "start_url": "./",
+  "scope": "./",
+  "id": "/Ayanda-infant-school/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#0c1b2e",
+  "theme_color": "#16304f",
+  "lang": "en-GB",
+  "dir": "ltr",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png",    "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png",    "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/maskable-512.png","sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Take a register", "short_name": "Register", "url": "./#/attendance",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Messages", "short_name": "Messages", "url": "./#/messages",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Family portal", "short_name": "Family", "url": "./#/families",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
